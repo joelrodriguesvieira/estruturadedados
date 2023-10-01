@@ -1,7 +1,6 @@
-package listadupla_teste;
+package listadupla;
 
 public class No {
-	
 	private No ant;
 	private int valor;
 	private No prox;

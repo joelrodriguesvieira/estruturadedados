@@ -1,9 +1,10 @@
-package listadupla_teste;
+package listadupla;
 
 public class Main {
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ListaDupla lista = new ListaDupla();
+ListaDupla lista = new ListaDupla();
 		
 		// Adicionando elementos na lista, afim de realizar os testes
 		lista.inserir(5);lista.inserir(1);lista.inserir(10);lista.inserir(0);

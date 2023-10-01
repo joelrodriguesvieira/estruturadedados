@@ -1,4 +1,4 @@
-package listadupla_teste;
+package listadupla;
 
 public class ListaDupla {
 	private No ref;

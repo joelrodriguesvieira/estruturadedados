@@ -124,9 +124,9 @@ public class No {
 	}
 	
 	public void remover(int valor) {
-    	if (this.valor < valor) {
+    	if (this.valor < valor && this.getDireita() != null) {
     		this.direita.remover(valor);
-    	} else if (this.valor > valor) {
+    	} else if (this.valor > valor && this.getEsquerda() != null) {
     		this.esquerda.remover(valor);
     	} else if (this.valor == valor) {
     		if (this.getDireita() == null && this.getEsquerda() == null) {
@@ -138,11 +138,21 @@ public class No {
     				}
     			}
     		} else if (this.getDireita() != null && this.getEsquerda() == null) {
-    			this.getPai().setDireita(this.getDireita());
-    			this.getDireita().setPai(this.getPai());
+    			if (this.getValor() > this.getPai().getValor()) {
+    				this.getPai().setDireita(this.getDireita());
+        			this.getDireita().setPai(this.getPai());
+    			} else if (this.getValor() < this.getPai().getValor()) {
+    				this.getPai().setEsquerda(this.getDireita());
+    				this.getDireita().setPai(this.getPai());
+    			}			
     		} else if (this.getDireita() == null & this.getEsquerda() != null) {
-    			this.getPai().setEsquerda(this.getEsquerda());
-    			this.getEsquerda().setPai(this.getPai());
+    			if (this.getValor() > this.getPai().getValor()) {
+    				this.getPai().setDireita(this.getEsquerda());
+    				this.getEsquerda().setPai(this.getPai());
+    			} else if (this.getValor() < this.getPai().getValor()) {
+    				this.getPai().setEsquerda(this.getEsquerda());
+        			this.getEsquerda().setPai(this.getPai());
+    			}	
     		} else {
     			No sucessor = this.sucessor();
     			sucessor.setEsquerda(this.getEsquerda());
@@ -153,7 +163,11 @@ public class No {
     			}
     			sucessor.setPai(this.getPai());
     		}
-    	}   	
+    	}
+    	 else {
+ 			System.out.println("Número "+ valor  +" não foi encontrado para realizar a remoção");
+ 			return;
+ 		}
     }
     
     public String preOrdem(String str) {
